@@ -122,14 +122,16 @@ public class Hangman {
                 System.out.println("RIP! The word was: " + gameWord + ".");
                 System.out.println("Better luck next time!\n");
                 break;
+                
             } else if (checkWin(hits, gameWord)) {
                 printPlaceholders(hits, gameWordArray);
                 System.out.println("\nGOOD WORK! The word is: " + gameWord + ".");
                 System.out.println("You have guessed it correctly!\n");
                 break;
             }
+
         }
-        
+
         scan.close();
     }
 
