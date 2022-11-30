@@ -80,6 +80,7 @@ public class Hangman {
         // 2. Set required variables for game to start:
         int countMisses = 0;
         String gameWord = randomWord();
+        char[] gameWordArray = gameWord.toCharArray();
         String hits = " ";
         String misses = "";
 
@@ -93,8 +94,9 @@ public class Hangman {
 
         while(true) {
             printGallows(countMisses);
-            printPlaceholders(hits, gameWord);
-            printMisses(misses);
+            printPlaceholders(hits, gameWordArray);
+
+            System.out.println("\nMisses: " + misses);
 
             if (hits.length() == 1 && countMisses == 0) {
                 System.out.print("\nGuess your first letter: ");
@@ -121,14 +123,13 @@ public class Hangman {
                 System.out.println("Better luck next time!\n");
                 break;
             } else if (checkWin(hits, gameWord)) {
-                printPlaceholders(hits, gameWord);
+                printPlaceholders(hits, gameWordArray);
                 System.out.println("\nGOOD WORK! The word is: " + gameWord + ".");
                 System.out.println("You have guessed it correctly!\n");
                 break;
             }
-
         }
-
+        
         scan.close();
     }
 
@@ -168,38 +169,37 @@ public class Hangman {
      * Function name: printPlaceholders
      * 
      * @param misses (String)
-     * @param gameWord (String)
+     * @param gameWordArray (char[])
      * 
      * Print a set of '_' based on the number of characters in gameWord.
      * 
      */
 
-    public static void printPlaceholders(String hits, String gameWord) {
+    public static void printPlaceholders(String hits, char[]gameWordArray) {
 
         System.out.print("Word: ");
 
-        char[] newArray = new char[gameWord.length()];
+        char[] printArray = new char[gameWordArray.length];
         char[] hitsArray = hits.toCharArray();
-        char[] gameWordArray = gameWord.toCharArray();
 
-        for (int i = 0; i < gameWord.length(); i++) {
+        for (int i = 0; i < gameWordArray.length; i++) {
             for (int j = 0; j < hitsArray.length; j++) {
                 if (gameWordArray[i] != hitsArray[j]) {
-                    newArray[i] = '_';
+                    printArray[i] = '_';
                 }
             }
         }
 
-        for (int i = 0; i < gameWord.length(); i++) {
+        for (int i = 0; i < gameWordArray.length; i++) {
             for (int j = 0; j < hitsArray.length; j++) {
                 if (gameWordArray[i] == hitsArray[j]) {
-                    newArray[i] = hitsArray[j];
+                    printArray[i] = hitsArray[j];
                 }
             }
         }
 
-        for (int k = 0; k < newArray.length; k++) {
-            System.out.print(newArray[k] + " ");
+        for (int k = 0; k < printArray.length; k++) {
+            System.out.print(printArray[k] + " ");
         }
  
         System.out.print("\n");
@@ -220,19 +220,6 @@ public class Hangman {
 
         String letter = Character.toString(playerGuess);
         return gameWord.contains(letter);
-    }
-
-    /**
-     * Function name: printMisses
-     * 
-     * @param misses
-     * 
-     * Prints out all the missed characters in a string.
-     * 
-     */
-
-    public static void printMisses(String misses) {
-        System.out.println("\nMisses: " + misses);
     }
 
     /**
