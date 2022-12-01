@@ -135,6 +135,11 @@ public class Hangman {
         scan.close();
     }
 
+    /*  ==============
+     *  Functions List
+     *  ==============
+     */
+
     /**
      * Function name: printGallows
      * 
@@ -154,8 +159,8 @@ public class Hangman {
      * 
      * @return gameWord (string)
      * 
-     * 1. Generate a random number using the length of array in Words[].
-     * 2. Use the random number to return a word from the Words[] array.
+     * - Generate a random number using the length of array in Words[].
+     * - Use the random number to return a word from the Words[] array.
      * 
      */
 
