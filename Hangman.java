@@ -136,9 +136,10 @@ public class Hangman {
         scan.close();
     }
 
-    /*  ==============
-     *  Functions List
-     *  ==============
+    /*
+     * =====================
+     * Other Functions List
+     * =====================
      */
 
     /**
